@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineScope | Movie Listing and Rating</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="brand-row">
+        <a class="brand" href="#top">
+          <span class="brand-mark">CF</span>
+          <span class="brand-name">CineFlux</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Primary navigation">
+          <a href="#movie-grid">Home</a>
+          <a href="#movie-grid">Movies</a>
+          <a href="#featured-strip">Trending</a>
+          <a href="#controls">Discover</a>
+          <a href="#movie-grid">Watchlist</a>
+          <a href="#movie-grid">Favorites</a>
+        </nav>
+
+        <div class="header-tools">
+          <label class="header-search" for="search-input">
+            <input id="search-input" type="search" placeholder="Search movies, directors, genres">
+            <span>Search</span>
+          </label>
+          <button class="header-cta" id="surprise-me-btn" type="button">Random Pick</button>
+        </div>
+      </div>
+
+      <section class="hero-band" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow">Lights. Camera. Discover.</p>
+          <h1>Find blockbuster worlds, hidden gems, and unforgettable movie nights in one place.</h1>
+          <p class="hero-text">
+            Explore action-packed adventures, emotional dramas, multiverse chaos, dark thrillers, and fan-favorite classics with trailers, ratings, and quick details ready on every card.
+          </p>
+          <p class="hero-caption">From weekend binge picks to late-night favorites, your next watch starts here.</p>
+          <div class="hero-actions">
+            <a class="primary-btn" href="#movie-grid">Browse titles</a>
+            <button class="secondary-btn" id="reset-filters-btn" type="button">Reset filters</button>
+          </div>
+        </div>
+
+        <aside class="hero-stats">
+          <div>
+            <span>Titles</span>
+            <strong id="movie-count">0</strong>
+          </div>
+          <div>
+            <span>Genres</span>
+            <strong id="genre-count">0</strong>
+          </div>
+          <div>
+            <span>Your ratings</span>
+            <strong id="rating-count">0</strong>
+          </div>
+        </aside>
+      </section>
+    </header>
+
+    <main>
+      <section class="featured-strip" id="featured-strip">
+        <div>
+          <p class="section-tag">Featured now</p>
+          <h2>Spotlight picks and fast category jumps</h2>
+        </div>
+        <div class="spotlight-card" id="spotlight-card"></div>
+        <div class="quick-genre-row" id="quick-genre-row"></div>
+      </section>
+
+      <section class="controls-panel" id="controls">
+        <div class="controls-head">
+          <div>
+            <p class="section-tag">Filter the library</p>
+            <h2>Find the right movie in a few clicks</h2>
+          </div>
+          <div class="collection-meta">
+            <p class="result-copy" id="result-copy">Loading movies...</p>
+            <p class="support-copy" id="support-copy">Preparing catalog...</p>
+          </div>
+        </div>
+
+        <div class="controls-grid">
+          <div class="filter-wrap wide">
+            <label class="input-label" for="genre-filter">Genre</label>
+            <select id="genre-filter">
+              <option value="all">All genres</option>
+            </select>
+          </div>
+
+          <div class="filter-wrap">
+            <label class="input-label" for="year-filter">Release year</label>
+            <select id="year-filter">
+              <option value="all">All years</option>
+            </select>
+          </div>
+
+          <div class="filter-wrap">
+            <label class="input-label" for="sort-filter">Sort by</label>
+            <select id="sort-filter">
+              <option value="featured">Featured</option>
+              <option value="rating">Highest rated</option>
+              <option value="latest">Newest</option>
+              <option value="title">Title A-Z</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="active-filters" id="active-filters" aria-live="polite"></div>
+      </section>
+
+      <section class="movie-grid" id="movie-grid" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <dialog class="movie-modal" id="movie-modal">
+    <button class="modal-close" id="modal-close" type="button" aria-label="Close details">×</button>
+    <div class="modal-body" id="modal-body"></div>
+  </dialog>
+
+  <template id="movie-card-template">
+    <article class="movie-card">
+      <button class="card-hitarea" type="button">
+        <div class="poster-frame">
+          <div class="poster-art"></div>
+        </div>
+        <div class="card-copy">
+          <h3 class="movie-title"></h3>
+          <p class="movie-meta"></p>
+          <div class="score-line">
+            <span class="movie-score"></span>
+            <span class="movie-year"></span>
+          </div>
+          <p class="movie-description"></p>
+          <p class="movie-cast"></p>
+        </div>
+      </button>
+      <div class="card-actions">
+        <a class="card-btn trailer-btn" target="_blank" rel="noreferrer">Trailer</a>
+        <button class="card-btn watchlist-btn" type="button">Watchlist</button>
+        <button class="card-btn details-btn" type="button">Details</button>
+      </div>
+      <div class="card-footer">
+        <div class="chip-row"></div>
+        <div class="rating-box">
+          <span class="rating-label">Your rating</span>
+          <div class="star-row" role="radiogroup" aria-label="Rate movie"></div>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
